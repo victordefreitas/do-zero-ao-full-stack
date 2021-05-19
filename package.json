@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "nodemon server.js"
+    "backend": "nodemon server.js",
+    "frontend": "cd frontend && yarn start",
+    "dev": "concurrently \"npm start Back-end\" \"npm run frontend\" ",
+    "start": "node server.js"
   },
   "keyworlds": [
     "MERN",
@@ -18,12 +20,17 @@
   "author": "victor",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "ls": "^0.2.1",
     "mongoose": "^5.12.4",
     "notenv": "^2.0.3",
-    "slug": "^4.0.4"
+    "slug": "^4.0.4",
+    "styled-components": "^5.3.0"
   },
   "engines": {
     "node": "10.x"
