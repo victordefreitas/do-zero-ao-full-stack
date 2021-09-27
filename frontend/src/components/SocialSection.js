@@ -21,14 +21,17 @@ const Socialsection = () => {
 
 
 const Network = styled.div`
-    padding: 1rem 5rem;
+    padding: 1rem 60rem;
+    display: grid;
+    flex-direction:row;
+    align-items: center;
 `;
 const Social = styled.a`
     display:flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border-radius:15px 50xp;
+    border-radius:10px 50xp;
     text-decoration: none;
     padding-left: 2rem;    
 

@@ -55,5 +55,12 @@ const Globalstyle = createGlobalStyle`
         font-size:1.4rem;
         line-height: 150%
     }
+
+    label {
+        color: blueviolet;
+        font-weight: bold; 
+    }
+
+    
 `
 export default Globalstyle;

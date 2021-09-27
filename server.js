@@ -8,12 +8,6 @@ const api = require('./Back-end/Routes')
 app.use(bodyParser.json());
 
 
-app.get('/', (req, res) => {
-    res.json({
-        'success': true
-    });
-})
-
 app.use('/api', api);
 
 if (process.env.NODE_ENV === 'produção') {
@@ -22,16 +16,11 @@ if (process.env.NODE_ENV === 'produção') {
 
     const path = require('path')
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'inde.html'))
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
     })
 }
 
 const PORT = process.env.PORT;
-//var port = 8080;
-console.log(PORT)
-app.listen(8080)
+app.listen(PORT)
 
 
-//user : My-portfolio
-//senha: 180279
-//Url: mongodb+srv://My-portfolio:<password>@cluster0.5xwzr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority

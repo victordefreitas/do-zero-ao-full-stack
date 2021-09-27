@@ -1,14 +1,22 @@
 const router = require('express').Router();
+
+const auth = require('../middleware/auth')
+
 const slug = require('slug');
+const { update } = require('../models/Portfolio');
 const Portfolio = require('../models/Portfolio');
 
 
 //Create
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 
     const portfolio = new Portfolio({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        longDescription: req.body.longDescription,
+        image: req.body.image,
+
+
     });
 
 
@@ -28,6 +36,8 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+
+
     try {
         const portfolio = await Portfolio.find()
 
@@ -41,9 +51,12 @@ router.get('/', async (req, res) => {
             message: err
         })
     }
+
 })
 
 router.get('/:slug', async (req, res) => {
+
+
     try {
         const portfolio = await Portfolio.findOne({
             slug: req.params.slug
@@ -60,16 +73,20 @@ router.get('/:slug', async (req, res) => {
     }
 });
 //update
-router.patch('/:slug', async (req, res) => {
+router.patch('/:slug', auth, async (req, res) => {
     try {
-        const updatePortfolio = await Portfolio.updateOne({
+        const updatePortfolio = await portfolio.updateOne({
             slug: req.params.slug
         },
             {
                 $set: {
                     title: req.body.title,
-                    description: req.body.description
+                    description: req.body.description,
+                    longDescription: req.body.longDescription,
+                    image: req.body.image
+
                 }
+
             })
         res.json({
             success: true,
@@ -84,7 +101,7 @@ router.patch('/:slug', async (req, res) => {
     }
 });
 //delete
-router.delete('/:slug', async (req, res) => {
+router.delete('/:slug', auth, async (req, res) => {
     try {
         const deletedPortfolio = await Portfolio.deleteOne({
             slug: req.params.slug

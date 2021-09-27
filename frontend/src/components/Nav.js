@@ -2,11 +2,17 @@ import React from 'react'
 
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import Userfront from '@userfront/react';
+import { LogoutButton } from './Auth/Authenticacao'
+
+Userfront.init('6nz69vn7')
+
+
 const Nav = () => {
     const menu = {
-        Home: '<MENU />',
-        portfolio: '<PORTFOLIO/>',
-        contato: '<CONTATO />'
+        Home: '<MENU /> ',
+        portfolio: '<PORTFOLIO />',
+        contato: '<CONTATO /> '
     }
     return (
         < StyleNav>
@@ -15,6 +21,18 @@ const Nav = () => {
                 <li><Link to='/' >{menu.Home}</Link></li>
                 <li><Link to='/portfolio'>{menu.portfolio}</Link></li>
                 <li><Link to='/contacme'>{menu.contato}</Link></li>
+                {
+                    !Userfront.accessToken() && (
+                        <>
+                            <li><Link to='/Login'>Login</Link></li>
+                            <li><Link to='/Signup'>Cadastro</Link></li>
+                            <refresh />
+                        </>
+                    )
+                }
+                {Userfront.accessToken() && <li><LogoutButton /></li>}
+
+
             </ul>
 
         </StyleNav>

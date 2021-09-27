@@ -20,9 +20,23 @@ const portfolioSchema = new Schema({
         type: String,
         required: true
     },
+    longDescription: {
+        type: String
+    },
     createDat: {
         type: Date,
         default: Date.now()
+    },
+    technologies: [
+        {
+            label: String,
+            icon: String,
+            iconType: String
+        }
+    ],
+    image: {
+        type: String,
+        required: true
     }
 
 });
